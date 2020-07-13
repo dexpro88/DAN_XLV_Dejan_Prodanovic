@@ -90,6 +90,7 @@
     <Compile Include="ViewModel\EditProductViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ManagerMainViewModel.cs" />
+    <Compile Include="ViewModel\StorekeeperMainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
@@ -102,6 +103,12 @@
     </Compile>
     <Compile Include="View\ManagerMainView.xaml.cs">
       <DependentUpon>ManagerMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductDetail.xaml.cs">
+      <DependentUpon>ProductDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StorekeeperMainView.xaml.cs">
+      <DependentUpon>StorekeeperMainView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +136,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManagerMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StorekeeperMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

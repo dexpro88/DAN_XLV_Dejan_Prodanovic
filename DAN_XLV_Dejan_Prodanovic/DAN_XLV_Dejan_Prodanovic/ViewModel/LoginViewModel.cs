@@ -68,17 +68,7 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
 
         void Submit(object obj)
         {
-            //UserValidation userValidation = new UserValidation();
-            //string password = (obj as PasswordBox).Password;
-            //if (!userValidation.IsCorrectUser(userName, password))
-            //{
-            //    WarningView warning = new WarningView(view);
-            //    warning.Show("User name or password are not correct!");
-            //    return;
-            //}
-
-
-            //WelcomeView main = new WelcomeView();
+            
             string password = (obj as PasswordBox).Password;
 
             if (string.IsNullOrEmpty(UserName)||string.IsNullOrEmpty(password))
@@ -96,7 +86,9 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
             else if (UserName.Equals(UserConstants.STOREKEEPER_USER_NAME) &&
                 password.Equals(UserConstants.STOREKEEPER_PASSWORD))
             {
-                MessageBox.Show("Dobrodosli magacioner");
+                StorekeeperMainView storekeeperView = new StorekeeperMainView();
+                view.Close();
+                storekeeperView.Show();
 
             }
             else
