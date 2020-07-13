@@ -9,6 +9,10 @@ namespace DAN_XLV_Dejan_Prodanovic.Service
     {
         List<tblProduct> GetProducts();
         void AddProduct(tblProduct product);
+        void EditProduct(tblProduct product);
         void RemoveProduct(int productId);
+        tblProduct GetProductByName(string name);
+        tblProduct GetProductByCode(string code);
+
     }
 }

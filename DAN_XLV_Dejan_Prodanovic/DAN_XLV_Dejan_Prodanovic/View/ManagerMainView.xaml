@@ -76,7 +76,7 @@
                         <DataTemplate>
                             <Button Width="100"
                                     Height="20"
-                                    Command="{Binding Path=DataContext.AddToOrder, RelativeSource= {RelativeSource FindAncestor,
+                                    Command="{Binding Path=DataContext.EditProduct, RelativeSource= {RelativeSource FindAncestor,
                                        AncestorType={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}"
                                     Content="Edit" />
                         </DataTemplate>
@@ -101,7 +101,7 @@
                     HorizontalAlignment="Center">
             <Button Visibility="{Binding ViewMakeOrder, UpdateSourceTrigger=PropertyChanged}"
                     Width="100"
-                    Command="{Binding Add}"
+                    Command="{Binding AddProduct}"
                     Content="Add product" />
             
             <Button Command="{Binding Close}"

@@ -171,25 +171,33 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
             return true;
         }
 
-        private ICommand add;
-        public ICommand Add
+       
+
+        private ICommand addProduct;
+        public ICommand AddProduct
         {
             get
             {
-                if (add == null)
+                if (addProduct == null)
                 {
-                    add = new RelayCommand(param => AddExecute(), param => CanAddExecute());
+                    addProduct = new RelayCommand(param => AddProductExecute(), 
+                        param => CanAddProductExecute());
                 }
-                return add;
+                return addProduct;
             }
         }
 
-        private void AddExecute()
+        private void AddProductExecute()
         {
             try
             {
-                MessageBox.Show("dodao sam");
-                dataService.AddProduct(new tblProduct());
+                AddProduct addProduct = new AddProduct();
+                addProduct.ShowDialog();
+
+                if ((addProduct.DataContext as AddProductViewModel).IsUpdateProduct == true)
+                {
+                    ProductList = dataService.GetProducts();
+                }
 
             }
             catch (Exception ex)
@@ -197,8 +205,50 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
                 MessageBox.Show(ex.ToString());
             }
         }
-        private bool CanAddExecute()
+        private bool CanAddProductExecute()
         {
+
+            return true;
+        }
+
+        private ICommand editProduct;
+        public ICommand EditProduct
+        {
+            get
+            {
+                if (editProduct == null)
+                {
+                    editProduct = new RelayCommand(param => EditProductExecute(),
+                        param => CanEditProductExecute());
+                }
+                return editProduct;
+            }
+        }
+
+        private void EditProductExecute()
+        {
+            try
+            {
+                EditProduct editProduct = new EditProduct(SelectetProduct);
+                editProduct.ShowDialog();
+
+                //if ((editProduct.DataContext as EditProductViewModel).IsUpdateProduct == true)
+                //{
+                //    ProductList = dataService.GetProducts();
+                //}
+                ProductList = dataService.GetProducts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanEditProductExecute()
+        {
+            if (SelectetProduct==null)
+            {
+                return false;
+            }
             return true;
         }
         #endregion

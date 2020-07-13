@@ -14,7 +14,111 @@ namespace DAN_XLV_Dejan_Prodanovic.Service
 
         public void AddProduct(tblProduct product)
         {
-            
+            try
+            {
+                using (StoreDBEntities context = new StoreDBEntities())
+                {
+
+                    tblProduct newProduct = new tblProduct();
+                    newProduct.ProductName = product.ProductName;
+                    newProduct.Price = product.Price;
+                    newProduct.Amount = product.Amount;
+                    newProduct.Code = product.Code;
+                    newProduct.Stored = product.Stored;
+
+                    context.tblProducts.Add(newProduct);
+                    context.SaveChanges();
+                   
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                
+            }
+        }
+
+        public void EditProduct(tblProduct product)
+        {
+            try
+            {
+                using (StoreDBEntities context = new StoreDBEntities())
+                {
+
+                    tblProduct productToEdit = (from p in context.tblProducts
+                                                where p.ID == product.ID select p).First();
+
+                    //tblUser oldUserData = new tblUser();
+                    //oldUserData.FirstName = userToEdit.FirstName;
+                    //oldUserData.LastName = userToEdit.LastName;
+                    //oldUserData.JMBG = userToEdit.JMBG;
+                    //oldUserData.Gender = userToEdit.Gender;
+
+                    productToEdit.ProductName = product.ProductName;
+                    productToEdit.Price = product.Price;
+                    productToEdit.Amount = product.Amount;
+                    productToEdit.Code = product.Code;
+                 
+
+                     
+
+                    context.SaveChanges();
+
+                    //FileLoging fileLog = FileLoging.Instance();
+                    //fileLog.LogEditUserToFilevwUser(user, oldUserData);
+                     
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                 
+            }
+        }
+
+        public tblProduct GetProductByCode(string code)
+        {
+            try
+            {
+                using (StoreDBEntities context = new StoreDBEntities())
+                {
+
+
+                    tblProduct product = (from x in context.tblProducts
+                                          where x.Code == code
+                                          select x).First();
+
+                    return product;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public tblProduct GetProductByName(string name)
+        {
+            try
+            {
+                using (StoreDBEntities context = new StoreDBEntities())
+                {
+
+
+                    tblProduct product = (from x in context.tblProducts
+                                          where x.ProductName == name select x).First();
+
+                    return product;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
         }
 
         public List<tblProduct> GetProducts()
@@ -56,5 +160,7 @@ namespace DAN_XLV_Dejan_Prodanovic.Service
                 System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
             }
         }
+
+
     }
 }

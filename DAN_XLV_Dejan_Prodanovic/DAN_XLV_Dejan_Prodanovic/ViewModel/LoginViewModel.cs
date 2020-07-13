@@ -83,7 +83,7 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
 
             if (string.IsNullOrEmpty(UserName)||string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Empty");
+                MessageBox.Show("Wrong user name or password");
                 return;
             }
             if (UserName.Equals(UserConstants.MANAGER_USER_NAME) && 
@@ -102,11 +102,10 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
             else
             {
                 MessageBox.Show("Wrong username or password");
-
+                 
             }
 
-            view.Close();
-            //main.Show();
+            
         }
     }
 }
