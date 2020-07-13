@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\UserConstants.cs" />
+    <Compile Include="EventClass.cs" />
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\IDataService.cs" />
     <Compile Include="StoreDatabaseModel.Context.cs">
@@ -85,11 +86,13 @@
     <Compile Include="tblProduct.cs">
       <DependentUpon>StoreDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TextToWriteEventArgs.cs" />
     <Compile Include="Validation\ValidationClass.cs" />
     <Compile Include="ViewModel\AddProductViewModel.cs" />
     <Compile Include="ViewModel\EditProductViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ManagerMainViewModel.cs" />
+    <Compile Include="ViewModel\ProductDetailViewModel.cs" />
     <Compile Include="ViewModel\StorekeeperMainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddProduct.xaml.cs">

@@ -59,9 +59,7 @@ namespace DAN_XLV_Dejan_Prodanovic.Service
                     productToEdit.Price = product.Price;
                     productToEdit.Amount = product.Amount;
                     productToEdit.Code = product.Code;
-                 
-
-                     
+                    productToEdit.Stored = product.Stored;
 
                     context.SaveChanges();
 

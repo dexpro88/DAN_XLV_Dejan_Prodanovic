@@ -15,6 +15,7 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
     {
         StorekeeperMainView view;
         IDataService dataService;
+        int storeCount;
 
         #region Constructors
         public StorekeeperMainViewModel(StorekeeperMainView storekeeperMainOpen)
@@ -22,6 +23,17 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
             view = storekeeperMainOpen;
             dataService = new DataService();
             ProductList = dataService.GetProducts();
+
+            storeCount = 0;
+
+            foreach (var product in ProductList)
+            {
+                if ((bool)product.Stored)
+                {
+                    storeCount += (int)product.Amount;
+                }
+                
+            }
 
         }
         #endregion
@@ -138,13 +150,13 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                ProductDetail productDetail = new ProductDetail();
+                ProductDetail productDetail = new ProductDetail(SelectetProduct, storeCount);
                 productDetail.ShowDialog();
 
-                //if ((addProduct.DataContext as AddProductViewModel).IsUpdateProduct == true)
-                //{
-                //    ProductList = dataService.GetProducts();
-                //}
+                if ((productDetail.DataContext as ProductDetailViewModel).IsUpdateProduct == true)
+                {
+                    ProductList = dataService.GetProducts();
+                }
 
             }
             catch (Exception ex)
