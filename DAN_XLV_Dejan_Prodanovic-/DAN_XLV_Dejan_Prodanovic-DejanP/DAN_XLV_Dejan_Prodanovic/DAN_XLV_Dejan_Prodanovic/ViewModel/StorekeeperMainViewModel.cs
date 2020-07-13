@@ -16,6 +16,7 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
         StorekeeperMainView view;
         IDataService dataService;
         int storeCount;
+        int counter;
 
         #region Constructors
         public StorekeeperMainViewModel(StorekeeperMainView storekeeperMainOpen)
