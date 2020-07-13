@@ -4,6 +4,7 @@ using DAN_XLV_Dejan_Prodanovic.View;
 using DataAccessLayer.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -14,6 +15,7 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
     {
         ManagerMainView view;
         IDataService dataService;
+        EventClass eventObject = new EventClass();
 
         #region Constructors
         public ManagerMainViewModel(ManagerMainView managerMainOpen)
@@ -21,7 +23,7 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
             view = managerMainOpen;
             dataService = new DataService();
             ProductList = dataService.GetProducts();
-            
+            eventObject.ActionPerformed += ActionPerformed;
         }
         #endregion
 
@@ -117,6 +119,9 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
                     switch (result)
                     {
                         case MessageBoxResult.Yes:
+                            string textToWrite = String.Format("You deleted {0}.",
+                            SelectetProduct.ProductName);
+                            eventObject.OnActionPerformed(textToWrite);
                             dataService.RemoveProduct(productId);
                             ProductList = dataService.GetProducts();
                            
@@ -196,6 +201,11 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
 
                 if ((addProduct.DataContext as AddProductViewModel).IsUpdateProduct == true)
                 {
+                    string productName = (addProduct.DataContext as AddProductViewModel).Product.ProductName;
+                    int amount = (int)(addProduct.DataContext as AddProductViewModel).Product.Amount;
+                    string textToWrite = String.Format("You added {0} of product {1}."
+                          , amount, productName);
+                    eventObject.OnActionPerformed(textToWrite);
                     ProductList = dataService.GetProducts();
                 }
 
@@ -232,11 +242,28 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
                 EditProduct editProduct = new EditProduct(SelectetProduct);
                 editProduct.ShowDialog();
 
-                //if ((editProduct.DataContext as EditProductViewModel).IsUpdateProduct == true)
-                //{
-                //    ProductList = dataService.GetProducts();
-                //}
-                ProductList = dataService.GetProducts();
+                if ((editProduct.DataContext as EditProductViewModel).IsUpdateProduct == true)
+                {
+                    string productName = (editProduct.DataContext as EditProductViewModel).OldProduct.ProductName;
+                    int amount = (int)(editProduct.DataContext as EditProductViewModel).OldProduct.Amount;
+                    string code = (editProduct.DataContext as EditProductViewModel).OldProduct.Code;
+                    decimal price = (decimal)(editProduct.DataContext as EditProductViewModel).OldProduct.Price;
+
+                    string newProductName = (editProduct.DataContext as EditProductViewModel).Product.ProductName;
+                    int newAmount = (int)(editProduct.DataContext as EditProductViewModel).Product.Amount;
+                    string newCode = (editProduct.DataContext as EditProductViewModel).Product.Code;
+                    decimal newPrice = (decimal)(editProduct.DataContext as EditProductViewModel).Product.Price;
+                    string textToWrite = String.Format("You changed product {0} {1} {2} {3} to " +
+                        " {4} {5} {6} {7}."
+                          , productName, amount,code,price, newProductName, newAmount, newCode,newPrice);
+                    eventObject.OnActionPerformed(textToWrite);
+                    ProductList = dataService.GetProducts();
+                }
+                else
+                {
+                    ProductList = dataService.GetProducts();
+                }
+              
             }
             catch (Exception ex)
             {
@@ -252,5 +279,13 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
             return true;
         }
         #endregion
+
+        void ActionPerformed(object source, TextToWriteEventArgs args)
+        {
+            using (StreamWriter sw = File.AppendText("../../Log.txt"))
+            {
+                sw.WriteLine(args.TextToWrite);
+            }
+        }
     }
 }

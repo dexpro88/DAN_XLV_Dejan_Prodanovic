@@ -155,6 +155,7 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
 
                 if ((productDetail.DataContext as ProductDetailViewModel).IsUpdateProduct == true)
                 {
+                    storeCount = (productDetail.DataContext as ProductDetailViewModel).StoreCount;
                     ProductList = dataService.GetProducts();
                 }
 

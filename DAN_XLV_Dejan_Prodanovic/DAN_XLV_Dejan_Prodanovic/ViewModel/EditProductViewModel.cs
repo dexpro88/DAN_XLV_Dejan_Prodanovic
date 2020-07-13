@@ -18,6 +18,7 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
         IDataService dataService;
         string oldName;
         string oldCode;
+        public tblProduct OldProduct { get; set; }
 
         public EditProductViewModel(EditProduct editProductOpen,tblProduct productToEdit)
         {
@@ -26,6 +27,13 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
             Product = productToEdit;
             oldName = productToEdit.ProductName;
             oldCode = productToEdit.Code;
+
+            OldProduct = new tblProduct();
+            OldProduct.ProductName = productToEdit.ProductName;
+            OldProduct.Code = productToEdit.Code;
+            OldProduct.Amount = productToEdit.Amount;
+            OldProduct.Price = productToEdit.Price;
+
         }
 
         private tblProduct product;
@@ -105,7 +113,7 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
 
                 dataService.EditProduct(Product);
 
-                //isUpdateProduct = true;
+                isUpdateProduct = true;
 
                 editProduct.Close();
 

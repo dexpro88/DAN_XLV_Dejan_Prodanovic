@@ -15,7 +15,8 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
     {
         ProductDetail productDetail;
         IDataService dataService;
-        int StoreCount;
+        public int StoreCount { get; set; }
+         
         bool oldStoredValue;
         EventClass eventObject = new EventClass();
 
@@ -89,29 +90,50 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
               
                 Product.Stored = Stored;
 
+                if ((bool)Product.Stored==oldStoredValue)
+                {
+                    
+                        string textToWrite1 = String.Format("You didn't make any changes.");
+                        eventObject.OnActionPerformed(textToWrite1);
+                        productDetail.Close();
+                        Stored = false;
+                        return;
+                }
+
                 if ((bool)Product.Stored)
                 {
                     if (StoreCount + (int)Product.Amount >100)
                     {
                         string textToWrite1 = String.Format("You can't store this product there is not" +
-                            "enough space in the store.");
+                            " enough space in the store.");
                         eventObject.OnActionPerformed(textToWrite1);
-                        productDetail.Close();
+                        Stored = false;
+                        return;
                     }
                 }
                 dataService.EditProduct(Product);
-                isUpdateProduct = true;
+                IsUpdateProduct = true;
                 if ((bool)Product.Stored)
                 {
-                    string textToWrite = String.Format("You succesfully stored {0 }{1}.",
+                    string textToWrite = String.Format("You succesfully stored {0} {1}.",
                         Product.Amount,Product.ProductName);
                     eventObject.OnActionPerformed(textToWrite);
+                    StoreCount += (int)Product.Amount;
+                    Stored = false;
                     productDetail.Close();
+
+                    return;
                 }
 
-
-                            
-
+                if (!(bool)Product.Stored && oldStoredValue == true)
+                {
+                    string textToWrite = String.Format("You succesfully unstored {0} {1}.",
+                        Product.Amount, Product.ProductName);
+                    eventObject.OnActionPerformed(textToWrite);
+                    StoreCount -= (int)Product.Amount;
+                    Stored = false;
+                    productDetail.Close();
+                }
             }
             catch (Exception ex)
             {
