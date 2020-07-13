@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccessLayer;
- 
 
-namespace DAN_XLV_Dejan_Prodanovic.Service
+namespace EFDataAccessLayer1
 {
-    class DataService : IDataService
+    public class EFDataAccess : IEFDataAccess
     {
-        
-
         public void AddProduct(tblProduct product)
         {
-            
+            throw new NotImplementedException();
         }
 
         public List<tblProduct> GetProducts()
@@ -38,23 +34,7 @@ namespace DAN_XLV_Dejan_Prodanovic.Service
 
         public void RemoveProduct(int productId)
         {
-            try
-            {
-                using (StoreDBEntities context = new StoreDBEntities())
-                {
-                    tblProduct productToDelete = (from u in context.tblProducts
-                                                  where u.ID == productId select u).First();
-
-                    context.tblProducts.Remove(productToDelete);
-
-                    context.SaveChanges();
- 
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
-            }
+            throw new NotImplementedException();
         }
     }
 }

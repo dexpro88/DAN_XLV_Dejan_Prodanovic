@@ -1,14 +1,15 @@
-﻿using DataAccessLayer.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace DAN_XLV_Dejan_Prodanovic.Service
+namespace StoreRepository
 {
-    interface IDataService
+    public interface IEFDataAccess
     {
-        List<tblProduct> GetProducts();
         void AddProduct(tblProduct product);
+        List<tblProduct> GetProducts();
         void RemoveProduct(int productId);
     }
 }
