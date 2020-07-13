@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAN_XLV_Dejan_Prodanovic", "DAN_XLV_Dejan_Prodanovic\DAN_XLV_Dejan_Prodanovic.csproj", "{CC770F06-E4E1-47BE-82AC-0AA13CE2352D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{D64BD132-5A03-4AA7-9E15-EC09908984AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CC770F06-E4E1-47BE-82AC-0AA13CE2352D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC770F06-E4E1-47BE-82AC-0AA13CE2352D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC770F06-E4E1-47BE-82AC-0AA13CE2352D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D64BD132-5A03-4AA7-9E15-EC09908984AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D64BD132-5A03-4AA7-9E15-EC09908984AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D64BD132-5A03-4AA7-9E15-EC09908984AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D64BD132-5A03-4AA7-9E15-EC09908984AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

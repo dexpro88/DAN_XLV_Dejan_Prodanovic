@@ -89,7 +89,9 @@ namespace DAN_XLV_Dejan_Prodanovic.ViewModel
             if (UserName.Equals(UserConstants.MANAGER_USER_NAME) && 
                 password.Equals(UserConstants.MANAGER_PASSWORD))
             {
-                MessageBox.Show("Dobrodosli menager");
+                ManagerMainView managerView = new ManagerMainView();
+                view.Close();
+                managerView.Show();
             }
             else if (UserName.Equals(UserConstants.STOREKEEPER_USER_NAME) &&
                 password.Equals(UserConstants.STOREKEEPER_PASSWORD))

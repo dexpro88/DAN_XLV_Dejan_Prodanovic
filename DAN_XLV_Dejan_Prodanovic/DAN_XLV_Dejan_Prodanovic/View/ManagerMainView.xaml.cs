@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAN_XLV_Dejan_Prodanovic.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace DAN_XLV_Dejan_Prodanovic.View
         public ManagerMainView()
         {
             InitializeComponent();
+            DataContext = new ManagerMainViewModel(this);
+
         }
     }
 }

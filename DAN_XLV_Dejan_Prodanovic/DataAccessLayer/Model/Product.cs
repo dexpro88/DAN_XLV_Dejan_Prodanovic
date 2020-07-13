@@ -18,7 +18,7 @@ namespace DataAccessLayer.Model
         public string Code { get; set; }
         public int Amount { get; set; }
         public decimal Price { get; set; }
-        public bool Store { get; set; }
+        public bool Stored { get; set; }
         static int productId = 0;
 
         public Product()
@@ -26,13 +26,13 @@ namespace DataAccessLayer.Model
 
         }
 
-        public Product(string code, int amount, decimal price, bool store)
+        public Product(string code, int amount, decimal price, bool stored)
         {
             ID = ++productId;
             Code = code;
             Amount = amount;
             Price = price;
-            Store = store;
+            Stored = stored;
         }
     }
 }
